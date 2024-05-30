@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalChallenges.Tests", "FunctionalChallenges.Tests\FunctionalChallenges.Tests.csproj", "{BE3AD730-AC2D-489F-A6E4-1AA11A84B928}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalChallengesCSharp", "FunctionalChallengesCSharp\FunctionalChallengesCSharp.csproj", "{E7900A30-B703-4BA0-8F7B-1A32296C4D73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalChallenges", "FunctionalChallenges\FunctionalChallenges.csproj", "{E7900A30-B703-4BA0-8F7B-1A32296C4D73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

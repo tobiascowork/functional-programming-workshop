@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FunctionalChallengesCSharp\FunctionalChallengesCSharp.csproj" />
+      <ProjectReference Include="..\FunctionalChallenges\FunctionalChallenges.csproj" />
     </ItemGroup>
 
 </Project>
