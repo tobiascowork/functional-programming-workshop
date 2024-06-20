@@ -1,38 +1,43 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Challenges;
 
 public static class MathematicalFunctions
 {
-    public static int Sum(int[] numbers)
-    {
-        var sum = 0;
-        
-        foreach(var number in numbers)
-            sum += number;
-        
-        return sum;
-    }
+    // public static int Sum(int[] numbers)
+    // {
+    //     var sum = 0;
+    //     
+    //     foreach(var number in numbers)
+    //         sum += number;
+    //     
+    //     return sum;
+    // }
+    public static int Sum(IEnumerable<int> numbers) => numbers.Sum();
+    //
+    // public static int Max(int[] numbers)
+    // {
+    //     var max = numbers[0];
+    //     
+    //     for(var i = 0; i < numbers.Length; i++)
+    //         if (numbers[i] > max)
+    //             max = numbers[i];
+    //     
+    //     return max;
+    // }
+    public static int Max(IEnumerable<int> numbers) => numbers.Max();
     
-    public static int Max(int[] numbers)
-    {
-        var max = numbers[0];
-        
-        for(var i = 0; i < numbers.Length; i++)
-            if (numbers[i] > max)
-                max = numbers[i];
-        
-        return max;
-    }
-    
-    public static int Min(int[] numbers)
-    {
-        var min = numbers[0];
-        
-        foreach(var number in numbers)
-            if (number < min)
-                min = number;
-        
-        return min;
-    }
+    // public static int Min(int[] numbers)
+    // {
+    //     var min = numbers[0];
+    //     
+    //     foreach(var number in numbers)
+    //         if (number < min)
+    //             min = number;
+    //     
+    //     return min;
+    // }    
+    public static int Min(IEnumerable<int> numbers) => numbers.Min();
     
     public static int IndexOf(int[] numbers, int numberToFind)
     {
@@ -42,56 +47,64 @@ public static class MathematicalFunctions
 
         return -1;
     }
-    
-    public static bool Contains(int[] numbers, int numberToFind)
-    {
-        foreach(var number in numbers)
-            if (number == numberToFind)
-                return true;
-        
-        return false;
-    }
-    
-    public static int[] Reverse(int[] numbers)
-    {
-        var reversed = new int[numbers.Length];
-        
-        for(var i = 0; i < numbers.Length; i++)
-            reversed[i] = numbers[numbers.Length - 1 - i];
-        
-        return reversed;
-    }
-    
-    public static int[] Copy(int[] numbers)
-    {
-        var copied = new int[numbers.Length];
-        
-        for(var i = 0; i < numbers.Length; i++)
-            copied[i] = numbers[i];
-        
-        return copied;
-    }
-    
-    public static int CountOccurrences(int[] numbers, int numberToFind)
-    {
-        var count = 0;
-        
-        foreach(var number in numbers)
-            if (number == numberToFind)
-                count++;
-        
-        return count;
-    }
 
-    public static int Power(int number, int n)
-    {
-        var p = 1;
-        
-        for (var i = 1; i <= n; i++)
-            p *= number;
+    // public static bool Contains(int[] numbers, int numberToFind)
+    // {
+    //     foreach(var number in numbers)
+    //         if (number == numberToFind)
+    //             return true;
+    //     
+    //     return false;
+    // }
+    public static bool Contains(IEnumerable<int> numbers, int numberToFind) => numbers.Any(numberToFind.Equals);
+    
+    // public static int[] Reverse(int[] numbers)
+    // {
+    //     var reversed = new int[numbers.Length];
+    //     
+    //     for(var i = 0; i < numbers.Length; i++)
+    //         reversed[i] = numbers[numbers.Length - 1 - i];
+    //     
+    //     return reversed;
+    // }
+    public static int[] Reverse(int[] numbers) => numbers.Reverse().ToArray();
+    
+    // public static int[] Copy(int[] numbers)
+    // {
+    //     var copied = new int[numbers.Length];
+    //     
+    //     for(var i = 0; i < numbers.Length; i++)
+    //         copied[i] = numbers[i];
+    //     
+    //     return copied;
+    // }    
+    
+    public static int[] Copy(IEnumerable<int> numbers) => numbers.ToArray();
+    
+    // public static int CountOccurrences(int[] numbers, int numberToFind)
+    // {
+    //     var count = 0;
+    //     
+    //     foreach(var number in numbers)
+    //         if (number == numberToFind)
+    //             count++;
+    //     
+    //     return count;
+    // }    
+    public static int CountOccurrences(int[] numbers, int numberToFind) => numbers.Count(numberToFind.Equals);
 
-        return p;
-    }
+    // public static int Power(int number, int n)
+    // {
+    //     var p = 1;
+    //     
+    //     for (var i = 1; i <= n; i++)
+    //         p *= number;
+    //
+    //     return p;
+    // }  
+    // public static int Power(int number, int n) => (int)Math.Pow(number, n);
+    public static int Power(int number, int n) => new int[n].Fill(number).Aggregate(1, (a, b) => a*b);
+    private static T[] Fill<T>(this ICollection<T> collection, T value) => Enumerable.Range(0, collection.Count).Select(_ => value).ToArray();
     
     public static int GetAmountOfPrimes(int n)
     {
@@ -118,14 +131,13 @@ public static class MathematicalFunctions
     
         return count;
     }
-    
+
     private static bool IsPrime(Span<bool> primes, int number)
     {
-          var index = number / 2;
+        var index = number / 2;
           
-          return index < primes.Length && primes[index];
+        return index < primes.Length && primes[index];
     }
-    
     private static void SetNotPrime(Span<bool> primes, int num)
     {
         var index = num / 2;
