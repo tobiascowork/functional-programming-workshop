@@ -8,87 +8,92 @@ public static class StringManipulation
     /* Convert a string to lowercase
      * Original: void lower(char s[]), page 43
      */
-    public static string ToLower(string s)
-    {
-        var chars = s.ToCharArray();
-        
-        for (var i = 0; i < chars.Length; i++)
-        {
-            if (chars[i] is >= 'A' and <= 'Z')
-            {
-                chars[i] = (char)(chars[i] + 32);
-            }
-        }
+    public static string ToLower(string s) => s.ToLower(); 
+    // public static string ToLower(string s)
+    // {
+    //     var chars = s.ToCharArray();
+    //     
+    //     for (var i = 0; i < chars.Length; i++)
+    //     {
+    //         if (chars[i] is >= 'A' and <= 'Z')
+    //         {
+    //             chars[i] = (char)(chars[i] + 32);
+    //         }
+    //     }
+    //
+    //     return new string(chars);
+    // }
 
-        return new string(chars);
-    }
-    
-    public static string ToUpper(string s)
-    {
-        var chars = s.ToCharArray();
-        
-        for (var i = 0; i < chars.Length; i++)
-        {
-            if (chars[i] is >= 'a' and <= 'z')
-            {
-                chars[i] = (char)(chars[i] - 32);
-            }
-        }
-
-        return new string(chars);
-    }
+    public static string ToUpper(string s) => s.ToUpper();
+    // public static string ToUpper(string s)
+    // {
+    //     var chars = s.ToCharArray();
+    //     
+    //     for (var i = 0; i < chars.Length; i++)
+    //     {
+    //         if (chars[i] is >= 'a' and <= 'z')
+    //         {
+    //             chars[i] = (char)(chars[i] - 32);
+    //         }
+    //     }
+    //
+    //     return new string(chars);
+    // }
 
     /* Remove all occurrences of character c from string s
      * Original: void squeeze(char s[], int c), page 47
      */
-    public static string Squeeze(string s, char c)
-    {
-        var chars = s.ToCharArray();
-        var j = 0;
-        
-        for (var i = 0; i < chars.Length; i++)
-        {
-            if (chars[i] != c)
-            {
-                chars[j++] = chars[i];
-            }
-        }
-
-        return new string(chars, 0, j);
-    }
+    public static string Squeeze(string s, char c) => s.Replace(c.ToString(), "");
+    // public static string Squeeze(string s, char c) 
+    // {
+    //     var chars = s.ToCharArray();
+    //     var j = 0;
+    //     
+    //     for (var i = 0; i < chars.Length; i++)
+    //     {
+    //         if (chars[i] != c)
+    //         {
+    //             chars[j++] = chars[i];
+    //         }
+    //     }
+    //
+    //     return new string(chars, 0, j);
+    // }
     
     /* Concatenate string s to string t
      * Original: void strcat(char s[], char b[]), page 48
      * This is a very modified version of the original function
      */
-    public static string StringConcatenate(string s, string t)
-    {
-        var charsS = s.ToList();
-        var charsT = t.ToCharArray();
-
-        for (int i = 0; i < charsT.Length; i++)
-        {
-            charsS.Add(charsT[i]);
-        }
-
-        return new string(charsS.ToArray());
-    }
+    public static string StringConcatenate(string s, string t) => $"{s}{t}";
+    // public static string StringConcatenate(string s, string t)
+    // {
+    //     var charsS = s.ToList();
+    //     var charsT = t.ToCharArray();
+    //
+    //     for (int i = 0; i < charsT.Length; i++)
+    //     {
+    //         charsS.Add(charsT[i]);
+    //     }
+    //
+    //     return new string(charsS.ToArray());
+    // }
     
     /* Convert an ASCII string (like "234") to an integer
      * Original: int atoi(char[] s), page 61
      */
-    public static int StringToInt(string s)
-    {
-        var sign = s[0] == '-' ? -1 : 1;
-        var i = s[0] == '-' ? 1 : 0;
-
-        for (; i < s.Length && IsSpace(s[i]); i++) { }
-        
-        int n;
-        for (n = 0; i < s.Length && IsDigit(s[i]); n = n * 10 + s[i++] - '0') { }
-
-        return sign * n;
-    }
+    public static int StringToInt(string s) => Convert.ToInt32(s);
+    // public static int StringToInt(string s)
+    // {
+    //     var sign = s[0] == '-' ? -1 : 1;
+    //     var i = s[0] == '-' ? 1 : 0;
+    //
+    //     for (; i < s.Length && IsSpace(s[i]); i++) { }
+    //     
+    //     int n;
+    //     for (n = 0; i < s.Length && IsDigit(s[i]); n = n * 10 + s[i++] - '0') { }
+    //
+    //     return sign * n;
+    // }
 
     private static bool IsSpace(char c)
     {
@@ -103,29 +108,30 @@ public static class StringManipulation
     /* Convert an integer to an ASCII string
      * Original: void itoa(int n, char s[]), page 64
      */
-    public static string IntToString(int n)
-    {
-        var chars = new char[11]; // 10 digits plus possible sign
-
-        var sign = n < 0;
-        if (sign)
-        {
-            n = -n;
-        }
-        
-        var i = 0;
-        do
-        {
-            chars[i++] = (char)(n % 10 + 48);
-        } while ((n /= 10) > 0);
-
-        if (sign)
-        {
-            chars[i++] = '-';
-        }
-
-        return StringReverse(new string(chars, 0, i));
-    }
+    public static string IntToString(int n) => $"{n}";
+    // public static string IntToString(int n)
+    // {
+    //     var chars = new char[11]; // 10 digits plus possible sign
+    //
+    //     var sign = n < 0;
+    //     if (sign)
+    //     {
+    //         n = -n;
+    //     }
+    //     
+    //     var i = 0;
+    //     do
+    //     {
+    //         chars[i++] = (char)(n % 10 + 48);
+    //     } while ((n /= 10) > 0);
+    //
+    //     if (sign)
+    //     {
+    //         chars[i++] = '-';
+    //     }
+    //
+    //     return StringReverse(new string(chars, 0, i));
+    // }
 
     /* Trim leading and trailing spaces from a string
      * Original: void trim(char s[]), page 65
